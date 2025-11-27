@@ -1,0 +1,11 @@
+{
+  "serverName": "CazeMC",
+  "serverIP": "play.cazemc.fun",
+  "theme": "dark",
+  "logo": "assets/logo.png",
+  "social": {
+    "discord": "https://discord.gg/yourserver",
+    "forums": "#",
+    "support": "#"
+  }
+}
