@@ -1,56 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CazeMC Store</title>
-<link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CazeMC Store — Tebex-like</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="header">
-  <div class="logo">CAZE<span>MC</span></div>
-  <div class="links">
-    <a href="#">HOME</a>
-    <a href="#">DISCORD</a>
-    <a href="#">SUPPORT</a>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <img id="logo" src="assets/logo.png" alt="logo">
+      <div class="brand-text"><h1 id="serverName">CazeMC</h1><div id="serverIP">play.cazemc.fun</div></div>
+    </div>
+    <nav class="top-nav">
+      <a href="#">Home</a>
+      <a href="#">Store</a>
+      <a href="#">Staff</a>
+      <a href="#">Plugins</a>
+      <a id="discordLink" href="#">Discord</a>
+    </nav>
   </div>
-</div>
+</header>
 
-<div class="layout">
+<section class="hero">
+  <div class="hero-inner wrap">
+    <div class="hero-left">
+      <h2>Official CazeMC Store</h2>
+      <p>Support the server — buy ranks, keys and exclusive items. Secure payments & instant delivery.</p>
+      <div class="hero-cta">
+        <button class="btn primary" id="open-store">Browse Store</button>
+        <button class="btn" id="open-support">Contact Support</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="card-animated">
+        <img src="assets/product1.jpg" alt="sample">
+        <div class="card-info"><h3>VIP Rank</h3><div class="price">₹199</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap main-grid">
   <aside class="sidebar">
-    <h3>CATEGORIES</h3>
+    <h4>Categories</h4>
     <ul>
-      <li>Ranks</li>
-      <li>Crate Keys</li>
-      <li>Coins</li>
-      <li>Queue Priority</li>
-      <li>About</li>
+      <li class="active">Featured</li><li>Ranks</li><li>Crate Keys</li><li>Coins</li><li>Queue Priority</li>
     </ul>
   </aside>
 
-  <main class="content">
-    <h2>FEATURED PACKAGES</h2>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Random Rank</h3>
-        <p>₹149</p>
-      </div>
-      <div class="card">
-        <h3>Supreme Rank</h3>
-        <p>₹349</p>
-      </div>
-      <div class="card">
-        <h3>Normal Key</h3>
-        <p>₹39</p>
-      </div>
+  <section class="store-content">
+    <div class="store-header">
+      <h3>Featured Packages</h3>
+      <div class="search"><input id="search" placeholder="Search items..."></div>
     </div>
 
-    <section class="info">
-      <h2>CazeMC Store</h2>
-      <p>Welcome to the official store. Buy ranks, keys, upgrades, and support the server.</p>
-    </section>
-  </main>
+    <div id="products" class="products-grid"></div>
+
+    <div class="info-panel">
+      <h4>Payments & Refunds</h4>
+      <p>We accept card & UPI. Refunds processed per store policy.</p>
+      <div class="payments">
+        <img src="assets/visa.svg"><img src="assets/mastercard.svg"><img src="assets/upi.svg">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">© CazeMC — Built with ❤️</footer>
+
+<!-- Checkout Modal -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="closeModal">×</button>
+    <h3>Checkout (Demo)</h3>
+    <div id="modal-items"></div>
+    <div class="modal-actions"><div>Total: ₹<span id="modal-total">0</span></div><button id="modal-pay" class="btn primary">Pay (Demo)</button></div>
+  </div>
 </div>
 
 <script src="app.js"></script>
