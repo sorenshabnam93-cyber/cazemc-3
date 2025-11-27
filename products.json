@@ -1,0 +1,6 @@
+[
+  {"id":"rank_vip","title":"VIP Rank","description":"Chat color, perks & crate access.","price":199,"image":"assets/product1.jpg"},
+  {"id":"rank_supreme","title":"Supreme Rank","description":"All perks + exclusive tag.","price":499,"image":"assets/product2.jpg"},
+  {"id":"key_rare","title":"Rare Key","description":"Opens a rare crate with special loot.","price":49,"image":"assets/product3.jpg"},
+  {"id":"coins_1000","title":"1000 Coins","description":"In-game currency pack.","price":99,"image":"assets/product4.jpg"}
+]
