@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Your Cart – CazeMC</title>
+<title>Your Cart</title>
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
@@ -10,17 +10,19 @@
 <body>
 
 <header class="nav">
-    <h1 class="logo">CazeMC</h1>
-    <a href="index.html" class="back-btn">Back</a>
+    <div class="logo">CazeMC</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="cart.html">🛒 <span id="cartCount">0</span></a>
+    </nav>
 </header>
 
-<section class="cart-section">
-    <h2>Your Cart</h2>
-
-    <div id="cartList"></div>
-    <p id="cartTotal" class="total"></p>
-
-    <button class="checkout-btn" onclick="goCheckout()">Proceed to Checkout</button>
+<section class="page">
+    <h1>Your Cart</h1>
+    <div id="cartItems"></div>
+    <h2>Total: ₹<span id="totalPrice">0</span></h2>
+    <a href="checkout.html"><button>Checkout</button></a>
 </section>
 
 </body>
