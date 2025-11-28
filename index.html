@@ -1,80 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CazeMC Store</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="app.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CazeMC Store</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-
-<header>
-    <div class="logo">CazeMC</div>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-    </nav>
-
-    <div class="cart">
-        <span class="cart-icon">🛒</span>
-        <span id="cartCount">0</span>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">
+        <img src="assets/logo.png" alt="logo" />
+        <div class="brand-text">
+          <h1>CazeMC</h1>
+          <div class="muted">play.cazemc.fun</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <div class="cart-badge" onclick="goCart()">🛒 <span id="cart-count">0</span></div>
+        <div><button id="loginBtn" class="btn" onclick="openLogin()">Login (IGN)</button></div>
+      </div>
     </div>
-</header>
+  </header>
 
-
-<section class="login-box" id="loginBox">
-    <button id="showLogin">Login (IGN)</button>
-
-    <div id="loginForm" class="hidden">
-        <h3>Enter Minecraft IGN</h3>
-        <input type="text" id="ignInput" placeholder="Your IGN">
-        <br>
-        <button id="continueLogin">Continue</button>
-        <button id="cancelLogin">Cancel</button>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-left">
+        <h2>Official CazeMC Store</h2>
+        <p>Support the server — buy ranks, keys and exclusive items. Secure payments & instant delivery.</p>
+        <div style="margin-top:12px;">
+          <button class="btn primary" id="open-store">Browse</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="card-animated">
+          <img src="assets/product_coins_100.jpg" alt="featured" style="border-radius:8px;height:110px;object-fit:cover"/>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div><strong>100 Coins</strong></div><div class="price">₹20</div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
+  <main class="wrap main-grid" role="main">
+    <aside class="sidebar">
+      <h4>Categories</h4>
+      <ul id="catList">
+        <li data-cat="all" class="active">All</li>
+        <li data-cat="coins">Coins</li>
+        <li data-cat="money">Money</li>
+        <li data-cat="keys">Keys</li>
+        <li data-cat="ranks">Ranks</li>
+      </ul>
+    </aside>
 
-<h1 class="title">Welcome to the CazeMC Store</h1>
-<p class="subtitle">Keys, ranks, and special items</p>
+    <section class="store-content">
+      <div class="store-header">
+        <h3>Featured Packages</h3>
+        <div class="search"><input id="search" placeholder="Search items..."></div>
+      </div>
 
+      <div id="products" class="products-grid"></div>
 
-<section class="items">
+      <div class="info-panel">
+        <h4>Payments & Refunds</h4>
+        <p>We accept card & UPI. Refunds processed per store policy.</p>
+        <div class="payments" style="margin-top:8px">
+          <img src="assets/visa.svg" alt="visa">
+          <img src="assets/mastercard.svg" alt="mc">
+          <img src="assets/upi.svg" alt="upi">
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <div class="item-card">
-        <h2>Key 1</h2>
-        <p class="price">₹20</p>
-        <button onclick="addToCart('Key 1', 20)">Add to Cart</button>
+  <footer class="site-footer">© CazeMC — Template</footer>
+
+  <!-- LOGIN / CART MODAL -->
+  <div id="loginModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="btn" style="float:right" onclick="closeLogin()">Close</button>
+      <h3>Login with IGN</h3>
+      <p class="muted">Enter your Minecraft in-game name — required before purchase</p>
+      <input id="ignInput" placeholder="Minecraft IGN" style="width:100%;padding:10px;border-radius:8px;border:none;margin-top:10px;background:#0b0a12;color:#fff" />
+      <div style="margin-top:12px;text-align:right"><button class="btn primary" onclick="submitLogin()">Login</button></div>
     </div>
+  </div>
 
-    <div class="item-card">
-        <h2>Key 2</h2>
-        <p class="price">₹40</p>
-        <button onclick="addToCart('Key 2', 40)">Add to Cart</button>
+  <div id="cartModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="btn" style="float:right" onclick="closeCart()">Close</button>
+      <h3>Your Cart</h3>
+      <div id="cartItems" style="margin-top:12px"></div>
+      <div style="margin-top:12px;text-align:right"><strong>Total: ₹<span id="cartTotal">0</span></strong> <button class="btn primary" onclick="goCheckout()">Checkout</button></div>
     </div>
+  </div>
 
-    <div class="item-card">
-        <h2>Key 3</h2>
-        <p class="price">₹60</p>
-        <button onclick="addToCart('Key 3', 60)">Add to Cart</button>
-    </div>
-
-    <div class="item-card">
-        <h2>Key 4</h2>
-        <p class="price">₹80</p>
-        <button onclick="addToCart('Key 4', 80)">Add to Cart</button>
-    </div>
-
-    <div class="item-card">
-        <h2>Key 5</h2>
-        <p class="price">₹100</p>
-        <button onclick="addToCart('Key 5', 100)">Add to Cart</button>
-    </div>
-
-</section>
-
+  <script src="app.js"></script>
 </body>
 </html>
