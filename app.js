@@ -88,3 +88,78 @@ document.querySelectorAll('.sidebar li').forEach(li=>li.addEventListener('click'
 
 loadSettings();
 loadProducts();
+// CART SYSTEM
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let ign = localStorage.getItem("ign") || "";
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function updateCartCount() {
+    document.getElementById("cartCount").innerText = cart.length;
+}
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    saveCart();
+    updateCartCount();
+    alert(name + " added to cart");
+}
+
+function goCart() {
+    window.location.href = "cart.html";
+}
+
+function goCheckout() {
+    window.location.href = "checkout.html";
+}
+
+// LOGIN SYSTEM
+function openLogin() {
+    document.getElementById("loginPopup").classList.remove("hidden");
+}
+
+function closeLogin() {
+    document.getElementById("loginPopup").classList.add("hidden");
+}
+
+function saveIGN() {
+    ign = document.getElementById("ignInput").value;
+    localStorage.setItem("ign", ign);
+    document.getElementById("loginName").innerText = ign;
+    closeLogin();
+}
+
+// DISPLAY IGN ON LOAD
+window.onload = function() {
+    updateCartCount();
+    if (ign) {
+        document.getElementById("loginName").innerText = "IGN: " + ign;
+    }
+
+    if (window.location.pathname.includes("cart.html")) {
+        loadCart();
+    }
+
+    if (window.location.pathname.includes("checkout.html")) {
+        document.getElementById("checkoutIGN").innerText = ign;
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        document.getElementById("checkoutTotal").innerText = "₹" + total;
+    }
+};
+
+// CART PAGE DISPLAY
+function loadCart() {
+    let list = document.getElementById("cartList");
+    let html = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        html += `<p>${item.name} - ₹${item.price}</p>`;
+        total += item.price;
+    });
+
+    list.innerHTML = html;
+    document.getElementById("cartTotal").innerText = "Total: ₹" + total;
+}
