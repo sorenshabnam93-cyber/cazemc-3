@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CazeMC Webstore</title>
-<link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CazeMC Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
 </head>
 
 <body>
 
-<header class="nav">
+<header>
     <div class="logo">CazeMC</div>
 
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-        <a href="cart.html" class="cart-btn">🛒 <span id="cartCount">0</span></a>
     </nav>
 
-    <button class="login-btn" onclick="openIGN()">Login (IGN)</button>
+    <div class="cart">
+        <span class="cart-icon">🛒</span>
+        <span id="cartCount">0</span>
+    </div>
 </header>
 
-<div id="ignModal" class="modal">
-    <div class="modal-content">
-        <h2>Enter your Minecraft IGN</h2>
-        <input id="ignInput" placeholder="Your IGN">
-        <button onclick="saveIGN()">Continue</button>
-        <button onclick="closeIGN()">Cancel</button>
-    </div>
-</div>
 
-<section class="hero">
-    <h1>Welcome to CazeMC Store</h1>
-    <p>Keys, ranks, and special items</p>
+<section class="login-box" id="loginBox">
+    <button id="showLogin">Login (IGN)</button>
+
+    <div id="loginForm" class="hidden">
+        <h3>Enter Minecraft IGN</h3>
+        <input type="text" id="ignInput" placeholder="Your IGN">
+        <br>
+        <button id="continueLogin">Continue</button>
+        <button id="cancelLogin">Cancel</button>
+    </div>
 </section>
 
-<section class="store">
+
+<h1 class="title">Welcome to the CazeMC Store</h1>
+<p class="subtitle">Keys, ranks, and special items</p>
+
+
+<section class="items">
 
     <div class="item-card">
-        <h3>Key 1</h3>
+        <h2>Key 1</h2>
         <p class="price">₹20</p>
         <button onclick="addToCart('Key 1', 20)">Add to Cart</button>
     </div>
 
     <div class="item-card">
-        <h3>Key 2</h3>
+        <h2>Key 2</h2>
         <p class="price">₹40</p>
         <button onclick="addToCart('Key 2', 40)">Add to Cart</button>
     </div>
 
     <div class="item-card">
-        <h3>Key 3</h3>
+        <h2>Key 3</h2>
         <p class="price">₹60</p>
         <button onclick="addToCart('Key 3', 60)">Add to Cart</button>
     </div>
 
     <div class="item-card">
-        <h3>Key 4</h3>
+        <h2>Key 4</h2>
         <p class="price">₹80</p>
         <button onclick="addToCart('Key 4', 80)">Add to Cart</button>
     </div>
 
     <div class="item-card">
-        <h3>Key 5</h3>
+        <h2>Key 5</h2>
         <p class="price">₹100</p>
         <button onclick="addToCart('Key 5', 100)">Add to Cart</button>
     </div>
