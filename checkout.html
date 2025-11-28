@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Checkout – CazeMC</title>
+<title>Checkout</title>
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
@@ -10,20 +10,20 @@
 <body>
 
 <header class="nav">
-    <h1 class="logo">CazeMC</h1>
-    <a href="index.html" class="back-btn">Back</a>
+    <div class="logo">CazeMC</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+    </nav>
 </header>
 
-<section class="checkout-section">
-    <h2>Checkout</h2>
+<section class="page">
+    <h1>Checkout</h1>
 
-    <p>IGN: <strong id="checkoutIGN"></strong></p>
-    <p class="total">Total: <strong id="checkoutTotal"></strong></p>
+    <p>Minecraft IGN: <strong id="showIGN"></strong></p>
+    <p>Total: ₹<span id="checkoutTotal"></span></p>
 
-    <p class="note">
-        Payment gateway not connected yet.  
-        You can later add Razorpay, PayPal, Stripe, Paytm etc.
-    </p>
+    <button onclick="alert('This is only a demo. Add your payment gateway.')">Pay Now</button>
 </section>
 
 </body>
