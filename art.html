@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CazeMC | Cart</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="left">
+        <div class="cart-icon" onclick="goCart()">
+            🛒 <span id="cartCount">0</span>
+        </div>
+    </div>
+
+    <div class="right">
+        <button id="loginBtn" class="login-btn" onclick="openLogin()">Login</button>
+        <span id="loggedUser" class="user-display"></span>
+    </div>
+</header>
+
+<h1 class="page-title">Your Cart</h1>
+
+<div class="cart-container" id="cartItems"></div>
+
+<div class="cart-footer">
+    <h2 id="totalPrice">Total: ₹0</h2>
+    <button class="checkout-btn" onclick="goCheckout()">Proceed to Checkout</button>
+</div>
+
+</body>
+</html>
