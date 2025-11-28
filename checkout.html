@@ -2,30 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CazeMC | Checkout</title>
+<title>Checkout – CazeMC</title>
 <link rel="stylesheet" href="style.css">
 <script src="app.js" defer></script>
 </head>
 
 <body>
 
-<header class="topbar">
-    <div class="left">
-        <div class="cart-icon" onclick="goCart()">
-            🛒 <span id="cartCount">0</span>
-        </div>
-    </div>
-
-    <div class="right">
-        <span id="loggedUser" class="user-display"></span>
-    </div>
+<header class="nav">
+    <h1 class="logo">CazeMC</h1>
+    <a href="index.html" class="back-btn">Back</a>
 </header>
 
-<h1 class="page-title">Checkout</h1>
+<section class="checkout-section">
+    <h2>Checkout</h2>
 
-<div id="checkoutBox" class="checkout-box"></div>
+    <p>IGN: <strong id="checkoutIGN"></strong></p>
+    <p class="total">Total: <strong id="checkoutTotal"></strong></p>
 
-<button class="checkout-btn" onclick="completePurchase()">Complete Purchase</button>
+    <p class="note">
+        Payment gateway not connected yet.  
+        You can later add Razorpay, PayPal, Stripe, Paytm etc.
+    </p>
+</section>
 
 </body>
 </html>
