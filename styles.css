@@ -42,3 +42,118 @@ html,body{margin:0;height:100%;background:linear-gradient(180deg,#05040a,#071125
 .modal-panel{background:#0f0b16;padding:18px;border-radius:12px;min-width:320px;max-width:520px;box-shadow:0 30px 80px rgba(0,0,0,0.7);color:#eaf0ff}
 .hidden{display:none}
 @media(max-width:900px){.main-grid{grid-template-columns:1fr}.hero-inner{flex-direction:column}}
+body {
+    margin: 0;
+    background: #0d0d0d;
+    color: white;
+    font-family: Arial;
+}
+
+/* NAV */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 28px;
+    color: #6cf;
+    letter-spacing: 2px;
+}
+
+.cart {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.login-btn {
+    background: #6cf;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+}
+
+/* PRODUCTS */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+    padding: 20px;
+    gap: 20px;
+}
+
+.product {
+    background: #181818;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product .price {
+    color: #6cf;
+}
+
+button {
+    background: #6cf;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* POPUP */
+.popup.hidden { display: none; }
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    background: #111;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.close-btn {
+    background: #444;
+    margin-left: 10px;
+}
+
+/* CART */
+.cart-section, .checkout-section {
+    padding: 20px;
+}
+
+.total {
+    color: #6cf;
+    font-size: 20px;
+}
+
+.checkout-btn {
+    margin-top: 20px;
+}
+
+/* ABOUT */
+.about-section {
+    padding: 20px;
+}
+
