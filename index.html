@@ -11,32 +11,33 @@
   <div class="wrap">
     <div class="brand">
       <img id="logo" src="assets/logo.png" alt="logo">
-      <div class="brand-text"><h1 id="serverName">CazeMC</h1><div id="serverIP">play.cazemc.fun</div></div>
+      <div class="brand-text">
+        <h1 id="serverName">CazeMC</h1>
+        <div id="serverIP" class="muted">play.cazemc.fun</div>
+      </div>
     </div>
     <nav class="top-nav">
       <a href="#">Home</a>
       <a href="#">Store</a>
       <a href="#">Staff</a>
-      <a href="#">Plugins</a>
       <a id="discordLink" href="#">Discord</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <div class="hero-inner wrap">
+  <div class="wrap hero-inner">
     <div class="hero-left">
       <h2>Official CazeMC Store</h2>
       <p>Support the server — buy ranks, keys and exclusive items. Secure payments & instant delivery.</p>
       <div class="hero-cta">
         <button class="btn primary" id="open-store">Browse Store</button>
-        <button class="btn" id="open-support">Contact Support</button>
       </div>
     </div>
     <div class="hero-right">
       <div class="card-animated">
-        <img src="assets/product1.jpg" alt="sample">
-        <div class="card-info"><h3>VIP Rank</h3><div class="price">₹199</div></div>
+        <img src="assets/product_coins_100.jpg" alt="sample">
+        <div class="card-info"><h3>Featured</h3><div class="price">₹20</div></div>
       </div>
     </div>
   </div>
@@ -45,14 +46,18 @@
 <main class="wrap main-grid">
   <aside class="sidebar">
     <h4>Categories</h4>
-    <ul>
-      <li class="active">Featured</li><li>Ranks</li><li>Crate Keys</li><li>Coins</li><li>Queue Priority</li>
+    <ul id="cat-list">
+      <li data-cat="all" class="active">All</li>
+      <li data-cat="coins">Coins</li>
+      <li data-cat="money">Money</li>
+      <li data-cat="keys">Keys</li>
+      <li data-cat="ranks">Ranks</li>
     </ul>
   </aside>
 
   <section class="store-content">
     <div class="store-header">
-      <h3>Featured Packages</h3>
+      <h3>Packages</h3>
       <div class="search"><input id="search" placeholder="Search items..."></div>
     </div>
 
@@ -62,13 +67,15 @@
       <h4>Payments & Refunds</h4>
       <p>We accept card & UPI. Refunds processed per store policy.</p>
       <div class="payments">
-        <img src="assets/visa.svg"><img src="assets/mastercard.svg"><img src="assets/upi.svg">
+        <img src="assets/visa.svg" alt="visa">
+        <img src="assets/mastercard.svg" alt="mastercard">
+        <img src="assets/upi.svg" alt="upi">
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">© CazeMC — Built with ❤️</footer>
+<footer class="site-footer">© CazeMC — Template</footer>
 
 <!-- Checkout Modal -->
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
