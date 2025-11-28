@@ -1,76 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>CazeMC Webstore</title>
-<link rel="stylesheet" href="style.css">
-<script src="app.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CazeMC Store — Tebex-like</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-
-<header class="topbar">
-    <div class="left">
-        <div class="cart-icon" onclick="goCart()">
-            🛒 <span id="cartCount">0</span>
-        </div>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <img id="logo" src="assets/logo.png" alt="logo">
+      <div class="brand-text">
+        <h1 id="serverName">CazeMC</h1>
+        <div id="serverIP" class="muted">play.cazemc.fun</div>
+      </div>
     </div>
-
-    <div class="right">
-        <button id="loginBtn" class="login-btn" onclick="openLogin()">Login</button>
-        <span id="loggedUser" class="user-display"></span>
-    </div>
+    <nav class="top-nav">
+      <a href="#">Home</a>
+      <a href="#">Store</a>
+      <a href="#">Staff</a>
+      <a id="discordLink" href="#">Discord</a>
+    </nav>
+  </div>
 </header>
 
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeLogin()">X</span>
-        <h2>Login with IGN</h2>
-        <input type="text" id="ignInput" placeholder="Enter Minecraft IGN">
-        <button class="login-btn" onclick="submitLogin()">Login</button>
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-left">
+      <h2>Official CazeMC Store</h2>
+      <p>Support the server — buy ranks, keys and exclusive items. Secure payments & instant delivery.</p>
+      <div class="hero-cta">
+        <button class="btn primary" id="open-store">Browse Store</button>
+      </div>
     </div>
+    <div class="hero-right">
+      <div class="card-animated">
+        <img src="assets/product_coins_100.jpg" alt="sample">
+        <div class="card-info"><h3>Featured</h3><div class="price">₹20</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap main-grid">
+  <aside class="sidebar">
+    <h4>Categories</h4>
+    <ul id="cat-list">
+      <li data-cat="all" class="active">All</li>
+      <li data-cat="coins">Coins</li>
+      <li data-cat="money">Money</li>
+      <li data-cat="keys">Keys</li>
+      <li data-cat="ranks">Ranks</li>
+    </ul>
+  </aside>
+
+  <section class="store-content">
+    <div class="store-header">
+      <h3>Packages</h3>
+      <div class="search"><input id="search" placeholder="Search items..."></div>
+    </div>
+
+    <div id="products" class="products-grid"></div>
+
+    <div class="info-panel">
+      <h4>Payments & Refunds</h4>
+      <p>We accept card & UPI. Refunds processed per store policy.</p>
+      <div class="payments">
+        <img src="assets/visa.svg" alt="visa">
+        <img src="assets/mastercard.svg" alt="mastercard">
+        <img src="assets/upi.svg" alt="upi">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">© CazeMC — Template</footer>
+
+<!-- Checkout Modal -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-panel">
+    <button class="modal-close" id="closeModal">×</button>
+    <h3>Checkout (Demo)</h3>
+    <div id="modal-items"></div>
+    <div class="modal-actions"><div>Total: ₹<span id="modal-total">0</span></div><button id="modal-pay" class="btn primary">Pay (Demo)</button></div>
+  </div>
 </div>
 
-<section class="hero">
-    <h1>CazeMC Webstore</h1>
-    <p>Purchase ranks, keys, and upgrades</p>
-</section>
-
-<section class="store">
-    <h2>Rank Keys</h2>
-
-    <div class="grid">
-        <div class="card">
-            <h3>Key 1</h3>
-            <p>₹20</p>
-            <button class="buy-btn" onclick="addToCart('Key 1', 20)">Add to Cart</button>
-        </div>
-
-        <div class="card">
-            <h3>Key 2</h3>
-            <p>₹40</p>
-            <button class="buy-btn" onclick="addToCart('Key 2', 40)">Add to Cart</button>
-        </div>
-
-        <div class="card">
-            <h3>Key 3</h3>
-            <p>₹60</p>
-            <button class="buy-btn" onclick="addToCart('Key 3', 60)">Add to Cart</button>
-        </div>
-
-        <div class="card">
-            <h3>Key 4</h3>
-            <p>₹80</p>
-            <button class="buy-btn" onclick="addToCart('Key 4', 80)">Add to Cart</button>
-        </div>
-
-        <div class="card">
-            <h3>Key 5</h3>
-            <p>₹100</p>
-            <button class="buy-btn" onclick="addToCart('Key 5', 100)">Add to Cart</button>
-        </div>
-    </div>
-</section>
-
+<script src="app.js"></script>
 </body>
 </html>
