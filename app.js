@@ -1,119 +1,90 @@
-// LOAD CART
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-updateCartCount();
-
-function updateCartCount() {
-    document.getElementById("cartCount").innerText = cart.length;
+async function loadSettings(){
+  const r = await fetch('settings.json');
+  const s = await r.json();
+  document.getElementById('serverName').textContent = s.serverName;
+  document.getElementById('serverIP').textContent = s.serverIP;
+  document.getElementById('logo').src = s.logo;
+  document.getElementById('discordLink').href = s.social.discord;
 }
 
-// LOGIN SYSTEM (IGN ONLY)
-function openLogin() {
-    document.getElementById("loginModal").style.display = "flex";
-}
-function closeLogin() {
-    document.getElementById("loginModal").style.display = "none";
-}
-function submitLogin() {
-    const ign = document.getElementById("ignInput").value.trim();
+let products = [];
+let cart = JSON.parse(localStorage.getItem('caze_cart')||'[]');
 
-    if (ign === "") {
-        alert("Please enter a valid IGN.");
-        return;
-    }
-
-    localStorage.setItem("cazemc_ign", ign);
-    document.getElementById("loggedUser").innerText = "Hi, " + ign;
-    document.getElementById("loginBtn").style.display = "none";
-    closeLogin();
+async function loadProducts(){
+  try{
+    const res = await fetch('products.json');
+    products = await res.json();
+  }catch(e){
+    products = [];
+  }
+  renderProducts();
+  renderCart();
 }
 
-window.onload = () => {
-    const ign = localStorage.getItem("cazemc_ign");
-    if (ign) {
-        document.getElementById("loggedUser").innerText = "Hi, " + ign;
-        document.getElementById("loginBtn").style.display = "none";
-    }
-
-    if (window.location.pathname.includes("cart.html")) {
-        loadCart();
-    }
-    if (window.location.pathname.includes("checkout.html")) {
-        loadCheckout();
-    }
-};
-
-// ADD TO CART
-function addToCart(name, price) {
-    const ign = localStorage.getItem("cazemc_ign");
-    if (!ign) {
-        openLogin();
-        return;
-    }
-
-    cart.push({ name, price });
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-
-    alert(name + " added to cart!");
+function renderProducts(filter='', category='all'){
+  const container = document.getElementById('products');
+  container.innerHTML = '';
+  const list = products.filter(p=>
+    (category==='all' || p.category===category) &&
+    (p.title.toLowerCase().includes(filter.toLowerCase()) || p.description.toLowerCase().includes(filter.toLowerCase()))
+  );
+  list.forEach(p=>{
+    const el = document.createElement('div'); el.className='product';
+    el.innerHTML = `
+      <img src="${p.image}" alt="${p.title}">
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <div class="row">
+        <div class="price">₹${p.price}</div>
+        <div><button class="btn add" data-id="${p.id}">Add</button></div>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+  document.querySelectorAll('.btn.add').forEach(b=>b.addEventListener('click', e=>addToCart(e.currentTarget.dataset.id)));
 }
 
-function goCart() {
-    window.location.href = "cart.html";
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const ex = cart.find(c=>c.id===id);
+  if(ex) ex.qty++;
+  else cart.push({id:p.id,title:p.title,price:p.price,qty:1});
+  localStorage.setItem('caze_cart', JSON.stringify(cart));
+  renderCart();
+  openModal();
 }
 
-// CART PAGE DISPLAY
-function loadCart() {
-    const box = document.getElementById("cartItems");
-    let total = 0;
-
-    box.innerHTML = "";
-    cart.forEach((item, index) => {
-        total += item.price;
-
-        box.innerHTML += `
-            <div class="cart-item">
-                <h3>${item.name}</h3>
-                <p>₹${item.price}</p>
-                <button onclick="removeItem(${index})">Remove</button>
-            </div>
-        `;
+function renderCart(){
+  let total=0,count=0;
+  cart.forEach(i=>{ total += i.price * i.qty; count += i.qty; });
+  document.getElementById('modal-total').innerText = total.toFixed(2);
+  const mi = document.getElementById('modal-items');
+  if(mi){
+    mi.innerHTML = '';
+    cart.forEach(it=>{
+      const div = document.createElement('div');
+      div.style.display = 'flex';
+      div.style.justifyContent = 'space-between';
+      div.style.padding = '6px 0';
+      div.innerHTML = `<div>${it.title} x${it.qty}</div><div>₹${(it.price*it.qty).toFixed(2)}</div>`;
+      mi.appendChild(div);
     });
-
-    document.getElementById("totalPrice").innerText = "Total: ₹" + total;
+  }
 }
 
-function removeItem(i) {
-    cart.splice(i, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
-    updateCartCount();
-}
+function openModal(){ document.getElementById('modal').classList.remove('hidden'); renderCart(); }
+function closeModal(){ document.getElementById('modal').classList.add('hidden'); }
 
-function goCheckout() {
-    window.location.href = "checkout.html";
-}
+document.getElementById('closeModal')?.addEventListener('click', closeModal);
+document.getElementById('modal-pay')?.addEventListener('click', ()=>{ alert('Demo payment — integrate Stripe/UPI using Netlify Functions'); closeModal(); });
+document.getElementById('search')?.addEventListener('input', (e)=>{ renderProducts(e.target.value, document.querySelector('.sidebar li.active')?.dataset?.cat || 'all'); });
+document.getElementById('open-store')?.addEventListener('click', ()=>{ window.scrollTo({top:600,behavior:'smooth'}); });
+document.querySelectorAll('.sidebar li').forEach(li=>li.addEventListener('click', e=>{
+  document.querySelectorAll('.sidebar li').forEach(x=>x.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  renderProducts(document.getElementById('search').value || '', e.currentTarget.dataset.cat || 'all');
+}));
 
-// CHECKOUT PAGE
-function loadCheckout() {
-    const box = document.getElementById("checkoutBox");
-    const ign = localStorage.getItem("cazemc_ign");
-
-    let total = 0;
-
-    box.innerHTML = `<h2>IGN: ${ign}</h2><hr>`;
-
-    cart.forEach(item => {
-        total += item.price;
-        box.innerHTML += `<p>${item.name} - ₹${item.price}</p>`;
-    });
-
-    box.innerHTML += `<hr><h2>Total: ₹${total}</h2>`;
-}
-
-function completePurchase() {
-    alert("Purchase complete! Items will be delivered in-game.");
-    cart = [];
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    window.location.href = "index.html";
-}
+loadSettings();
+loadProducts();
