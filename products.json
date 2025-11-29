@@ -3,5 +3,5 @@
   {"id":"coins_500","category":"coins","title":"500 Coins","description":"Medium coins pack","price":40,"image":"assets/product_coins_500.jpg"},
   {"id":"money_1m","category":"money","title":"1 Million","description":"In-game currency - 1M","price":40,"image":"assets/product_money_1m.jpg"},
   {"id":"key_1","category":"keys","title":"Key 1","description":"Opens a crate","price":20,"image":"assets/product_key1.jpg"},
-  {"id":"rank_vip","category":"ranks","title":"VIP Rank","description":"VIP perks","price":50,"image":"assets/ vip.webp.webp"}
+  {"id":"rank_vip","category":"ranks","title":"VIP Rank","description":"VIP perks","price":50,"image":"assets/vip.webp.webp"}
 ]
